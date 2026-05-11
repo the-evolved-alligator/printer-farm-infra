@@ -1,0 +1,58 @@
+name: infrastructure
+
+services:
+  homeassistant:
+    container_name: homeassistant
+    image: ghcr.io/home-assistant/home-assistant:2026.5.1
+    restart: unless-stopped
+    network_mode: host
+    environment:
+      TZ: America/Bogota
+    volumes:
+      - ./homeassistant:/config
+
+  esphome:
+    container_name: esphome
+    image: ghcr.io/esphome/esphome:2026.4.5
+    restart: unless-stopped
+    network_mode: host
+    environment:
+      TZ: America/Bogota
+    command: dashboard /config
+    volumes:
+      - ./esphome:/config
+
+  uptime-kuma:
+    container_name: uptime-kuma
+    image: louislam/uptime-kuma:1.23.17
+    restart: always
+    ports:
+      - "3001:3001"
+    networks:
+      - infrastructure
+    volumes:
+      - uptime-kuma:/app/data
+
+  portainer:
+    container_name: portainer
+    image: portainer/portainer-ce:2.39.2
+    restart: always
+    ports:
+      - "8000:8000"
+      - "9443:9443"
+    networks:
+      - infrastructure
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - portainer_data:/data
+
+networks:
+  infrastructure:
+    name: infrastructure
+    driver: bridge
+
+volumes:
+  uptime-kuma:
+    external: true
+  portainer_data:
+    external: true

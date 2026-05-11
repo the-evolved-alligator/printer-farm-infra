@@ -1,0 +1,27 @@
+# Secrets
+docker/homeassistant/secrets.yaml
+docker/esphome/secrets.yaml
+
+# Home Assistant runtime state
+docker/homeassistant/.storage/
+docker/homeassistant/.cloud/
+docker/homeassistant/.cache/
+docker/homeassistant/deps/
+docker/homeassistant/tts/
+docker/homeassistant/*.db
+docker/homeassistant/*.db-*
+docker/homeassistant/*.log
+docker/homeassistant/*.log.*
+docker/homeassistant/.HA_VERSION
+docker/homeassistant/.ha_run.lock
+docker/homeassistant/home-assistant.log.fault
+
+# ESPHome runtime state
+docker/esphome/.esphome/
+
+# Backups and archives
+backups/
+*.tar.gz
+
+# OS/editor noise
+.DS_Store
