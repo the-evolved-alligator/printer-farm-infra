@@ -36,6 +36,8 @@ When the live environment changes, update `INFRASTRUCTURE.MD`.
 
 When the target architecture or long-term direction changes, update `VISION.MD`.
 
+For session continuity and exact paths on the homelab host, see `AGENT_HANDOFF.md` and `docs/DIRECTORY_LAYOUT.md`.
+
 ---
 
 # Current Hardware

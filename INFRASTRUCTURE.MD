@@ -34,11 +34,27 @@ Primary host:
 * Ethernet-connected
 * Tailscale active on the host
 
-Repository paths:
+Repository paths (clone of this repo, templates and public-safe configs):
 
 * Compose stack: `docker/docker-compose.yml`
 * Home Assistant config: `docker/homeassistant`
 * ESPHome config: `docker/esphome`
+
+### Live host paths (this server)
+
+On `quicazan-rubio-homelab`, Docker bind mounts and the **running** Compose stack use the home directory, not the repo checkout:
+
+* Running Compose file: `/home/daniel-quicazan/docker/docker-compose.yml`
+* Live Home Assistant data: `/home/daniel-quicazan/docker/homeassistant`
+* Live ESPHome data: `/home/daniel-quicazan/docker/esphome`
+
+Operational commands on this machine must use the live path, for example:
+
+```bash
+docker compose -f /home/daniel-quicazan/docker/docker-compose.yml ps
+```
+
+The Git repository at `/home/daniel-quicazan/printer-farm-infra` is the **version-controlled** copy: docs, sanitized configs, and `docker-compose.yml` kept in sync with production when you deliberately update both.
 
 ---
 
